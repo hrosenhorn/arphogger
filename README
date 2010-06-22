@@ -1,0 +1,31 @@
+
+:: Description ::
+Quick and dirty ARP Proxy for specific needs.
+
+Not all routing solutions needs to be clean and pretty. This small program was written to solve a 
+frustrating but simple problem due to buggy firmware.
+
+Our ISP provided us with a IP range and instead of routing the network to us all addresses where up for grabs
+by setting the IP on a machine.
+
+This became a problem when we had machines standing behind a Watchguard, running in drop-in mode would forget it's arp entries.
+By setting the mode to routed in our Watchguard and running this program on a separate machine,
+responding to all arp requests and then routing all addresses using iptables we bypassed the problem.
+
+  ISP 
+   |
+   |
+   v
+Liux Box  --> Watchguard 
+
+:: Build and run ::
+* Edit raw.h and update ETHMAC and GATEWAYIP 
+* Type make to build
+* ./hogger to run
+
+
+::Other:: 
+This could probably be solved using any arp proxy, or using hardware with working firmware. 
+Sometimes you just need to write some code.
+
+ 
